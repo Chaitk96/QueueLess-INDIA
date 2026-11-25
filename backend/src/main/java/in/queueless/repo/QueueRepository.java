@@ -12,7 +12,7 @@ public interface QueueRepository extends JpaRepository<QueueEntry,Long> {
  List<QueueEntry> findByOrganizationIdAndVisitDateOrderByQueueNumberAsc(Long organizationId,LocalDate date);
  List<QueueEntry> findByCustomerIdAndStatusInOrderByJoinedAtDesc(Long customerId,List<QueueStatus> statuses);
  List<QueueEntry> findByCustomerIdOrderByJoinedAtDesc(Long customerId);
- @Modifying @Query("update QueueEntry q set q.customerName=:name, q.customerEmail=:email where q.customer.id=:customerId") int updateCustomerDetails(@Param("customerId") Long customerId,@Param("name") String name,@Param("email") String email);
+ @Modifying @Query(value="UPDATE queue_entries SET customer_name=:name, customer_email=:email WHERE customer_id=:customerId",nativeQuery=true) int updateCustomerDetails(@Param("customerId") Long customerId,@Param("name") String name,@Param("email") String email);
  List<QueueEntry> findByOrganizationIdOrderByJoinedAtDesc(Long organizationId);
  List<QueueEntry> findByOrganizationIdAndVisitDateAndStatusInOrderByQueueNumberAsc(Long orgId,LocalDate date,List<QueueStatus> statuses);
  Optional<QueueEntry> findByIdAndOrganizationId(Long id,Long organizationId);
