@@ -258,3 +258,26 @@ img,svg,video{max-width:100%}
   .owner-queue-item{padding:9px 7px}
   .queue-table-row,.table-head{grid-template-columns:20px minmax(62px,1fr) minmax(60px,1fr) 40px 50px;font-size:9px}
 }
+
+/* Persisted customer and organization photos share the same crop everywhere. */
+.profile-avatar{display:grid;place-items:center;overflow:hidden;flex:none}
+.profile-avatar>img{display:block;width:100%;height:100%;max-width:none;object-fit:cover;border-radius:inherit}
+.photo-picker{display:flex;align-items:center;gap:14px;margin:12px 0 16px;padding:12px;border:1px solid #e7ebe6;border-radius:12px;background:#fbfcfa}
+.photo-preview{width:64px;height:64px;border-radius:50%;background:#e6eee8;color:#32664d;font-size:20px;font-weight:800}
+.photo-picker-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.photo-picker-actions>b{flex:0 0 100%;font-size:13px;color:#59665e}
+.photo-upload-button,.photo-remove-button{display:inline-flex;align-items:center;border:1px solid #dce5dd;border-radius:8px;background:#fff;color:#286f56;padding:7px 10px;font-size:13px;font-weight:700;cursor:pointer}
+.photo-upload-button input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.photo-remove-button{color:#7c625d}
+.photo-picker-actions>small{flex:0 0 100%;font-size:11px;color:#8b948e}
+.photo-picker-actions>.photo-error{color:#b44b3f}
+.place-photo{border-radius:12px}
+.place-photo:not(:has(img)){font-size:13px;font-weight:800}
+.place-photo.large{border-radius:13px}
+.business-avatar{overflow:hidden}
+.organization-heading-avatar{width:42px;height:42px;border-radius:13px;background:#e8efe9;color:#32664d;font-weight:800}
+.edit-organization-profile{align-self:center;max-width:180px;border:1px solid #d9e7dc;border-radius:9px;background:#f2f8f1;color:#286f56;padding:9px 12px;font-weight:700;cursor:pointer}
+.appointment-icon{overflow:hidden}
+.appointment-icon img,.person-initial img{width:100%;height:100%;max-width:none;object-fit:cover;border-radius:inherit}
+.organization-profile-editor{max-height:min(90dvh,900px);overflow:auto}
+@media(max-width:560px){.photo-picker{align-items:flex-start}.organization-heading-avatar{width:34px;height:34px}.edit-organization-profile{font-size:11px;padding:8px;max-width:135px}.organization-profile-editor{max-height:calc(100dvh - 20px)}}

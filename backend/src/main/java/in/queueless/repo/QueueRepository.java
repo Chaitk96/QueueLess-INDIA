@@ -4,11 +4,15 @@ import in.queueless.model.Domain.QueueStatus;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 public interface QueueRepository extends JpaRepository<QueueEntry,Long> {
  List<QueueEntry> findByOrganizationIdAndVisitDateOrderByQueueNumberAsc(Long organizationId,LocalDate date);
  List<QueueEntry> findByCustomerIdAndStatusInOrderByJoinedAtDesc(Long customerId,List<QueueStatus> statuses);
  List<QueueEntry> findByCustomerIdOrderByJoinedAtDesc(Long customerId);
+ @Modifying @Query("update QueueEntry q set q.customerName=:name, q.customerEmail=:email where q.customer.id=:customerId") int updateCustomerDetails(@Param("customerId") Long customerId,@Param("name") String name,@Param("email") String email);
  List<QueueEntry> findByOrganizationIdOrderByJoinedAtDesc(Long organizationId);
  List<QueueEntry> findByOrganizationIdAndVisitDateAndStatusInOrderByQueueNumberAsc(Long orgId,LocalDate date,List<QueueStatus> statuses);
  Optional<QueueEntry> findByIdAndOrganizationId(Long id,Long organizationId);

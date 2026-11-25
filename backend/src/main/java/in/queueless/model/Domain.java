@@ -14,6 +14,7 @@ public final class Domain {
         @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id;
         @Column(nullable=false, unique=true, length=254) public String email;
         @Column(nullable=false, length=100) public String name;
+        @Column(columnDefinition="text") public String profilePhoto;
         @Column(nullable=false) public String passwordHash;
         @Enumerated(EnumType.STRING) @Column(nullable=false, length=20) public Role role;
         @Column(nullable=false) public Instant createdAt = Instant.now();
@@ -32,6 +33,7 @@ public final class Domain {
         @Column(nullable=false,length=180) public String address;
         @Column(nullable=false,length=80) public String city;
         @Column(length=1000) public String description;
+        @Column(columnDefinition="text") public String profilePhoto;
         @Column(nullable=false) public boolean active=true;
         @Column(nullable=false) public Instant createdAt=Instant.now();
         @ManyToOne(optional=false,fetch=FetchType.EAGER) public User owner;

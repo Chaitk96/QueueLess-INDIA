@@ -1,0 +1,2 @@
+ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_photo TEXT;
+ALTER TABLE organizations ADD COLUMN IF NOT EXISTS profile_photo TEXT;

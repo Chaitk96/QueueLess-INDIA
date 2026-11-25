@@ -14,6 +14,7 @@ public class OrganizationController {
  @GetMapping("/organizations/{id}/staff") public List<StaffResponse> staff(@PathVariable Long id){return service.staff(id);}
  @GetMapping("/owner/organizations") public List<OrganizationResponse> mine(Authentication a){return service.mine(a.getName());}
  @PostMapping("/owner/organizations") public OrganizationResponse create(@Valid @RequestBody OrganizationRequest r,Authentication a){return service.create(r,a.getName());}
+ @PutMapping("/owner/organizations/{id}") public OrganizationResponse update(@PathVariable Long id,@Valid @RequestBody UpdateOrganizationRequest r,Authentication a){return service.update(id,r,a.getName());}
  @PostMapping("/owner/organizations/{id}/services") public ServiceResponse addService(@PathVariable Long id,@Valid @RequestBody ServiceRequest r,Authentication a){return service.addService(id,r,a.getName());}
  @PostMapping("/owner/organizations/{id}/staff") public StaffResponse addStaff(@PathVariable Long id,@Valid @RequestBody StaffRequest r,Authentication a){return service.addStaff(id,r,a.getName());}
  @DeleteMapping("/owner/organizations/{id}/services/{serviceId}") public MessageResponse removeService(@PathVariable Long id,@PathVariable Long serviceId,Authentication a){service.removeService(id,serviceId,a.getName());return new MessageResponse("Service removed");}
