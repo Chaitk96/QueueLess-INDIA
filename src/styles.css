@@ -198,3 +198,63 @@
 .remove-entity-button:hover{background:#e4f2e6;border-color:#b7d4bd}
 @media(max-width:650px){.owner-cancel-entry{margin-left:auto!important}.owner-row-actions{width:100%;display:flex;flex-wrap:wrap}.owner-queue-item{gap:10px}.workspace-entity-list article{align-items:flex-start}.remove-entity-button{padding:7px 9px}}
 @media(max-width:560px){.owner-queue-item{grid-template-columns:minmax(0,1fr) auto;align-items:start}.owner-queue-item>.owner-person{grid-column:1;grid-row:1}.owner-queue-item>.owner-visit{grid-column:1/-1;grid-row:2;width:100%;padding-left:0;text-align:left}.owner-queue-item>.status-pill{grid-column:2;grid-row:1;justify-self:end}.owner-queue-item>.owner-row-actions{grid-column:1/-1;grid-row:3;padding-left:0}}
+
+/* Keep the interface within narrow Android and iOS viewports. */
+html{overflow-x:clip}
+body{min-width:0;overflow-x:clip}
+img,svg,video{max-width:100%}
+@media(max-width:560px){
+  .app-shell,main,section,.dashboard-page,.business-page,.business-content,.business-main{min-width:0;max-width:100%}
+  .topbar{padding-left:12px;padding-right:12px;gap:8px}
+  .brand{font-size:clamp(15px,4.4vw,19px);letter-spacing:-.6px;min-width:0}
+  .brand i{font-size:9px;letter-spacing:0}
+  .header-actions{min-width:0;gap:5px}
+  .hero-inner{padding-left:clamp(14px,5vw,22px);padding-right:clamp(14px,5vw,22px)}
+  .eyebrow{flex-wrap:wrap;line-height:1.5}
+  .hero h1{font-size:clamp(35px,10.8vw,50px);line-height:1.08;letter-spacing:-1.8px;overflow-wrap:anywhere}
+  .hero-ctas{flex-wrap:wrap;gap:10px}
+  .hero-ctas>*{max-width:100%}
+  .hero-art{width:100%;overflow:visible}
+  .art-window{width:min(304px,calc(100vw - 42px));max-width:100%}
+  .float-top{right:0;max-width:calc(100vw - 36px)}
+  .float-bottom{left:0;max-width:calc(100vw - 36px)}
+  .discover-section{padding-left:14px;padding-right:14px}
+  .section-heading{gap:10px;min-width:0}
+  .section-heading h2,.dashboard-top h1,.business-heading h1{overflow-wrap:anywhere}
+  .search-row{flex-wrap:wrap}
+  .search-box{flex:1 1 175px;min-width:0}
+  .date-filter{flex:0 0 auto}
+  .category-row{flex-wrap:wrap}
+  .place-card,.active-queue-card,.metric-card,.panel,.workspace-manage-grid>*{min-width:0;max-width:100%}
+  .place-card *,.active-queue-card *,.owner-queue-item *,.history-row *{min-width:0}
+  .place-card h3,.active-place-name h3,.owner-person b,.owner-visit b,.owner-person small,.owner-visit small,.history-row,.organization-reason,.organization-rating{overflow-wrap:anywhere;word-break:normal}
+  .owner-queue-item{grid-template-columns:minmax(0,1fr) auto}
+  .owner-person,.owner-visit{min-width:0}
+  .owner-row-actions{min-width:0;gap:6px}
+  .owner-row-actions button,.owner-row-actions select{max-width:100%;white-space:normal}
+  .queue-table-row,.table-head{grid-template-columns:24px minmax(74px,1fr) minmax(72px,1fr) 48px 58px;gap:4px;padding-left:6px;padding-right:6px}
+  .queue-table-row,.queue-table-row *,.table-head{overflow-wrap:anywhere;word-break:normal}
+  .auth-modal,.booking-modal,.place-modal,.message-panel,.subscription-modal,.products-modal{box-sizing:border-box;max-width:100vw}
+  .auth-modal input,.auth-modal select,.booking-modal input,.booking-modal select,.profile-editor input{min-width:0;max-width:100%}
+  .auth-grid{grid-template-columns:minmax(0,1fr)}
+  .modal-scrim,.auth-scrim{padding: max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom))}
+  .auth-modal{max-height:calc(100dvh - 20px);overflow-y:auto}
+  .message-panel{padding-bottom:max(18px,env(safe-area-inset-bottom))}
+  .footer-links{flex-wrap:wrap;row-gap:8px}
+}
+@media(max-width:380px){
+  .topbar{padding-left:9px;padding-right:9px}
+  .brand{font-size:15px;gap:6px}
+  .brand-mark{width:26px;height:26px}
+  .hero h1{font-size:35px}
+  .hero-proof{align-items:flex-start}
+  .hero-proof p{line-height:1.4}
+  .stats-inner{padding-left:10px;padding-right:10px;column-gap:7px}
+  .stat{gap:5px}
+  .stat b{font-size:13px}
+  .business-main{padding-left:9px;padding-right:9px}
+  .business-topbar{padding-left:9px;padding-right:9px}
+  .business-heading h1{font-size:21px}
+  .owner-queue-item{padding:9px 7px}
+  .queue-table-row,.table-head{grid-template-columns:20px minmax(62px,1fr) minmax(60px,1fr) 40px 50px;font-size:9px}
+}
