@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public final class Domain {
     private Domain() {}
-    public enum Role { CUSTOMER, OWNER }
+    public enum Role { CUSTOMER, OWNER, MASTER_ADMIN }
     public enum QueueStatus { WAITING, SERVING, COMPLETED, CANCELLED, NO_SHOW }
 
     @Entity @Table(name="users")
@@ -17,6 +17,7 @@ public final class Domain {
         @Column(columnDefinition="text") public String profilePhoto;
         @Column(nullable=false) public String passwordHash;
         @Enumerated(EnumType.STRING) @Column(nullable=false, length=20) public Role role;
+        @Column(nullable=false) public boolean active=true;
         @Column(nullable=false) public Instant createdAt = Instant.now();
         public Instant freeAccessUntil;
         public Instant subscriptionUntil;

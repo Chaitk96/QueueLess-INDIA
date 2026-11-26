@@ -21,4 +21,9 @@ public interface QueueRepository extends JpaRepository<QueueEntry,Long> {
  long countByOrganizationIdAndVisitDateAndStatusIn(Long orgId,LocalDate date,List<QueueStatus> statuses);
  Optional<QueueEntry> findTopByOrganizationIdAndVisitDateOrderByQueueNumberDesc(Long orgId,LocalDate date);
  int countByOrganizationIdAndVisitDateAndQueueNumberLessThanAndStatusIn(Long orgId,LocalDate date,int number,List<QueueStatus> statuses);
+ long countByStatus(QueueStatus status);
+ long countByOrganizationId(Long organizationId);
+ long countByOrganizationIdAndStatus(Long organizationId,QueueStatus status);
+ long countByCustomerId(Long customerId);
+ long countByCustomerIdAndStatus(Long customerId,QueueStatus status);
 }

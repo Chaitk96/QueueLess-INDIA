@@ -33,6 +33,12 @@ public final class ApiModels {
  public record PaymentOrderResponse(String keyId,String orderId,int amount,String currency,String planCode,int durationDays,String description){}
  public record VerifyPaymentRequest(@NotBlank String razorpayOrderId,@NotBlank String razorpayPaymentId,@NotBlank String razorpaySignature){}
  public record SubscriptionResponse(String status,String planCode,Instant freeAccessUntil,Instant subscriptionUntil,Instant accessUntil){}
+ public record AdminOverview(long customers,long owners,long organizations,long activeOrganizations,long appointments,long waiting,long serving,long completed,long cancelled,long noShow){}
+ public record AdminCustomer(Long id,String name,String email,String profilePhoto,boolean active,Instant registeredAt,long appointments,long completed,long cancelled,long waiting,long serving,long noShow){}
+ public record AdminOrganization(Long id,String name,String category,String address,String city,String profilePhoto,boolean active,Instant registeredAt,Long ownerId,String ownerName,String ownerEmail,long registeredCustomers,long appointments,long completed,long cancelled,long waiting,long serving,long noShow){}
+ public record AdminAppointment(Long id,LocalDate visitDate,String status,int queueNumber,String serviceName,String organizationName,String customerName,String customerEmail,String staffName,Long estimatedWaitMinutes,String cancellationReason,Instant joinedAt,Instant completedAt){}
+ public record AdminCustomerDetail(AdminCustomer customer,java.util.List<AdminAppointment> appointments){}
+ public record AdminOrganizationDetail(AdminOrganization organization,java.util.List<AdminAppointment> appointments){}
  public static AccountResponse account(User u){return new AccountResponse(u.id,u.name,u.email,u.role.name(),u.freeAccessUntil,u.subscriptionUntil,u.subscriptionPlan,u.profilePhoto);}
  public static OrganizationResponse organization(Organization o,long wait,long waiting,String nextEstimatedTime){return new OrganizationResponse(o.id,o.name,o.category,o.address,o.city,o.description,wait,waiting,nextEstimatedTime,o.profilePhoto);}
  public static ServiceResponse service(ServiceItem s){return new ServiceResponse(s.id,s.name,s.durationMinutes);}

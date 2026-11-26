@@ -16,6 +16,7 @@ final class AccessPolicy {
     }
 
     static void requireAccess(User user) {
+        if (!user.active) throw new ResponseStatusException(HttpStatus.FORBIDDEN,"This account has been deactivated");
         Instant until=accessUntil(user);
         if(until==null||until.isBefore(Instant.now())) {
             String message=user.role==Role.OWNER?"Your 2-hour free workspace access ended. Choose the annual plan to continue.":"Your free access ended. Choose a QueueLess pass to continue.";

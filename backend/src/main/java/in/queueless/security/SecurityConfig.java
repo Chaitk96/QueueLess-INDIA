@@ -22,6 +22,7 @@ public class SecurityConfig {
   return http.csrf(c->c.disable()).cors(c->{}).sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authorizeHttpRequests(a->a
    .requestMatchers("/api/v1/auth/me").authenticated()
    .requestMatchers("/api/v1/auth/**","/api/v1/organizations","/api/v1/organizations/*","/api/v1/organizations/*/services","/api/v1/organizations/*/staff","/api/v1/organizations/*/ratings","/api/v1/queues/track/**","/actuator/health","/swagger-ui/**","/swagger-ui.html","/v3/api-docs/**").permitAll()
+   .requestMatchers("/api/v1/admin/**").hasRole("MASTER_ADMIN")
    .requestMatchers("/api/v1/owner/**").hasRole("OWNER")
    .requestMatchers("/api/v1/queues/me/**").hasRole("CUSTOMER")
    .anyRequest().authenticated()).addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class).build();

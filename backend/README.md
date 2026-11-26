@@ -145,3 +145,13 @@ Deploy the frontend and backend as separate services. The frontend is static Vit
 5. Open the Vercel URL, register a customer account, then register an organization account and add its services. The demo database is intentionally empty.
 
 `VITE_API_BASE_URL` is embedded into the frontend at build time. If you change it in Vercel, redeploy the frontend. If you change backend environment variables, redeploy the backend. Never add `JWT_SECRET`, database credentials, or Razorpay secret values to Vercel's `VITE_` variables.
+# Master administrator
+
+The master administrator is created by the backend at startup when these environment variables are configured:
+
+- `MASTER_ADMIN_EMAIL` (defaults to `masteradmin@gmail.com`)
+- `MASTER_ADMIN_PASSWORD` (required; set this to the password you want)
+
+Set them in Render under **queue-less-api → Environment → Environment Variables**, then redeploy. Never commit the password to GitHub. For local PowerShell, set `$env:MASTER_ADMIN_PASSWORD = 'masteradmin@'` before running Maven. The account signs in through the normal **Sign in** form. The server grants the master-admin role only to the seeded account; public registration cannot create one.
+
+The admin workspace at `/api/v1/admin` provides global counts, customer and organization lists, individual appointment history, and account removal. Removal deactivates the record and cancels its active appointments while retaining historical records for reporting. Admin endpoints require a valid JWT with the `MASTER_ADMIN` role.

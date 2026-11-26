@@ -19,7 +19,7 @@ public class JwtFilter extends OncePerRequestFilter {
  public JwtFilter(JwtService jwt,UserRepository users){this.jwt=jwt;this.users=users;}
  @Override protected void doFilterInternal(HttpServletRequest request,HttpServletResponse response,FilterChain chain)throws ServletException,IOException{
   String header=request.getHeader("Authorization");
-  if(header!=null&&header.startsWith("Bearer "))try{String email=jwt.subject(header.substring(7));users.findByEmailIgnoreCase(email).ifPresent(user->{var auth=new UsernamePasswordAuthenticationToken(user.email,null,java.util.List.of(new SimpleGrantedAuthority("ROLE_"+user.role.name())));SecurityContextHolder.getContext().setAuthentication(auth);});}catch(JwtException|IllegalArgumentException ignored){SecurityContextHolder.clearContext();}
+  if(header!=null&&header.startsWith("Bearer "))try{String email=jwt.subject(header.substring(7));users.findByEmailIgnoreCaseAndActiveTrue(email).ifPresent(user->{var auth=new UsernamePasswordAuthenticationToken(user.email,null,java.util.List.of(new SimpleGrantedAuthority("ROLE_"+user.role.name())));SecurityContextHolder.getContext().setAuthentication(auth);});}catch(JwtException|IllegalArgumentException ignored){SecurityContextHolder.clearContext();}
   chain.doFilter(request,response);
  }
 }

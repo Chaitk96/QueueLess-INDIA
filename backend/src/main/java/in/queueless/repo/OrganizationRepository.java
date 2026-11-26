@@ -10,6 +10,10 @@ public interface OrganizationRepository extends JpaRepository<Organization,Long>
  List<Organization> findByActiveTrueAndCityContainingIgnoreCaseOrderByNameAsc(String city);
  Optional<Organization> findByIdAndActiveTrue(Long id);
  Optional<Organization> findByIdAndOwnerId(Long id,Long ownerId);
+ Optional<Organization> findByIdAndOwnerIdAndActiveTrue(Long id,Long ownerId);
  List<Organization> findByOwnerIdOrderByNameAsc(Long ownerId);
+ List<Organization> findByOwnerIdAndActiveTrueOrderByNameAsc(Long ownerId);
+ long countByActiveTrue();
+ long countByActiveFalse();
  @Override @Lock(LockModeType.PESSIMISTIC_WRITE) Optional<Organization> findById(Long id);
 }
